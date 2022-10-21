@@ -1,0 +1,42 @@
+﻿@model TravelBookingProject.Models.Manager
+@{
+    ViewBag.Title = "ManagerLogin";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>                    @*We are doing this to validate the field at client side*@
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<h2 class="text-center" style="color:cadetblue ">Manager Login</h2>
+
+@using (Html.BeginForm())
+
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <table class="table table-striped">
+        <tr>
+            <td>@Html.LabelFor(m => m.DasId)</td>
+            <td>
+                @Html.TextBoxFor(m => m.DasId, new { @class = "form-control" })
+               
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Password)</td>
+            <td>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+             
+            </td>
+        </tr>
+       
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <input type="submit" class="btn btn-primary" />
+            </td>
+        </tr>
+
+
+
+
+    </table>
+
+}

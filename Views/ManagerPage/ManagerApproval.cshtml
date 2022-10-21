@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TravelBookingProject.ViewModel.ManagerPageViewModel>
+@{
+    ViewBag.Title = "Manager";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+
+<h2>Manager</h2>
+<h4 class="text-center text-danger"style="background-color:aquamarine; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;border-color:black;font-size:25px" >
+    @TempData["ErrorMessage"]
+</h4>
+<br/>
+@using (Html.BeginForm()) {
+    <table class="table table-hover"  >
+        
+        <tr>
+            <th>Employee Id</th>
+            <th>Employee Name</th>
+            <th>Request Date</th>
+            <th>Status</th>
+
+            <th>Employee Details</th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.EmpId</td>
+                <td>@item.EmpName</td>
+                <td>@item.Registed_Date</td>
+                <td>@item.Status</td>
+
+
+                <td>
+                    <input class="btn btn-primary" value="Details" type="submit" id=item.EmpId formaction="@Url.Action("Details","TravelBooking", new {id=item.EmpId})" formmethod="post" />
+
+                </td>
+
+
+            </tr>
+
+        }
+    </table>
+
+}
+
+

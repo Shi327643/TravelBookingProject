@@ -1,0 +1,42 @@
+﻿@model TravelBookingProject.ViewModel.TravelViewModel
+@{
+    ViewBag.Title = "DisplayTravelers";
+}
+
+<h2>DisplayTravelers</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>Request Number</th>
+        <th>EmpId</th>
+        <th>GCMId</th>
+        <th>TravelId</th>
+        <th>CountryId</th>
+        <th>CityId</th>
+        <th>Requested_Date</th>
+        <th>Exp_Start_Date</th>
+        <th>Exp_End_Date</th>
+        <th>Status</th>
+        <th>ManagerId</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.travlersList)
+    {
+        <tr>
+            <td>@item.Request_No</td>
+            <td>@item.EmpId</td>
+            <td>@item.GCMId</td>
+            <td>@item.TravelId</td>
+            <td>@item.CountryId</td>
+            <td>@item.CityId</td>
+            <td>@item.Registed_Date</td>
+            <td>@item.Exp_Start_Date</td>
+            <td>@item.Exp_End_Date</td>
+            <td>@item.Status</td>
+            <td>@item.ManagerId</td>
+
+
+        </tr>
+
+    }
+</table>

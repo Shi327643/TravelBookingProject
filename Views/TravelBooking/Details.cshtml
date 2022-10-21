@@ -1,0 +1,91 @@
+﻿@model TravelBookingProject.ViewModel.TravelViewModel
+
+
+<div>
+    <h3 class="text-center" style="color:darkslategrey; background-color:cornsilk; font-family:Georgia, 'Times New Roman', Times, serif; font-size:45px">Employee Details</h3>
+    
+    <hr />
+
+</div>
+@using (Html.BeginForm())
+{
+    <table class="table-bordered table-striped table-hover" style="width:100%; height:100%">
+        <tr>
+            <th style="font-size:20px; font-family:'Times New Roman', Times, serif; background-color:burlywood">Booking Fields</th>
+            <th style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: burlywood">Responses</th>
+        </tr>
+        <tr>
+            <td style="font-size:20px; font-family:'Times New Roman', Times, serif;background-color:bisque">
+                @Html.DisplayNameFor(model => model.EmpId)
+            </td>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayFor(model => model.EmpId, new {@class = "form-control"})
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayNameFor(model => model.EmpName)
+            </td>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque; background-color: bisque ">
+                @Html.DisplayFor(model => model.EmpName, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayNameFor(model => model.GCM_Level)
+            </td>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayFor(model => model.GCM_Level, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayNameFor(model => model.Travel_Type)
+            </td>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayFor(model => model.Travel_Type, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayNameFor(model => model.CountryName)
+            </td>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayFor(model => model.CountryName, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayNameFor(model => model.CityName)
+            </td>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayFor(model => model.CityName, new { @class = "form-control" })
+            </td>
+        <tr>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayNameFor(model => model.Exp_Start_Date)
+            </td>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayFor(model => model.Exp_Start_Date, new { @class = "form-control" })
+            </td>
+        <tr>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayNameFor(model => model.Exp_End_Date)
+            </td>
+            <td style="font-size: 20px; font-family: 'Times New Roman', Times, serif; background-color: bisque">
+                @Html.DisplayFor(model => model.Exp_End_Date, new { @class = "form-control" })
+            </td>
+        </tr>
+       
+    </table>
+    <div class="center-block" style="margin-left:500px; margin-top:10px">
+        <input class="btn btn-primary" value="Approve" type="submit" id=Model.EmpId formaction="@Url.Action("ApproveRequest","ManagerPage", new {id=Model.EmpId})" formmethod="post" />
+
+        &nbsp;
+        &nbsp;
+        <input class="btn btn-danger" value="Reject" id="Model.EmpId" type="submit" formaction="@Url.Action("RejectRequest","ManagerPage", new {id = Model.EmpId})" formmethod="post" />
+    </div>
+   
+}
+
+

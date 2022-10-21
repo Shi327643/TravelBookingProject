@@ -1,0 +1,51 @@
+﻿@model TravelBookingProject.ViewModel.LoginpageViewModel
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>                    @*We are doing this to validate the field at client side*@
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<div class="center-block bg-info">
+    <h2 class="text-center" style="color:brown; font-style:initial; font-family:Bahnschrift">
+        Employee Login
+    </h2>
+</div>
+
+<div class="center-block bg-primary" style="margin-top:50px;">
+    @using (Html.BeginForm(@*"LoginConfirmation", "LoginPage", FormMethod.Post*@))
+
+    {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <table class="table">
+            <tr>
+                <td>@Html.LabelFor(m => m.UserName)</td>
+                <td>
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                    <span class="text-danger">@Html.ValidationMessageFor(m => m.UserName)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.Password)</td>
+                <td>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    <span class="text-danger">@Html.ValidationMessageFor(m => m.Password)</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <input type="submit" class="btn btn-success" />
+                </td>
+            </tr>
+
+
+
+
+        </table>
+
+    }
+</div>
+
+
+
+
+
+

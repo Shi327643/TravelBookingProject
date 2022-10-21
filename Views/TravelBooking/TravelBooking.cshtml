@@ -1,0 +1,206 @@
+﻿@model TravelBookingProject.ViewModel.TravelViewModel
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>                    @*We are doing this to validate the field at client side*@
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="bg-info center-block border border-dark">
+    <h2 class="text-center" style="color:brown">Employee Travel Booking </h2>
+</div>
+   
+    <div class="text-danger">
+        @ViewBag.Error
+        <br />
+        @ViewBag.Errormsg
+    </div>
+    <div class="bg-warning center-block border border-dark">
+        @using (Html.BeginForm())
+
+        {
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+            <table class="table">
+                <tr>
+                    <td>@Html.Label("Employee Name")</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.EmpName, new { @class = "form-control", @Value = Model.EmpName, @readonly = "readonly" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.EmpName)</span>
+                    </td>
+                    <td>@Html.Label("Employee GCM")</td>
+                    <td>
+
+                        @Html.DropDownListFor(m => m.GCMId, Model.GCMItem ?? new List<SelectListItem>(), "--------Select------------", new { @class = "form-control" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.GCMId)</span>
+                    </td>
+                    <td>@Html.Label("Request Number")</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Request_No, new { @class = "form-control", @readonly = "readonly" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Travel Type")</td>
+                    <td>
+                        @Html.DropDownListFor(m => m.TravelId, Model.TravelItem ?? new List<SelectListItem>(), "--------Select------------", new { @class = "form-control" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.TravelId)</span>
+                    </td>
+
+                    <td>@Html.Label("Status")</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Status, new { @class = "form-control", @Value = Model.Status, @readonly = "readonly" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.Status)</span>
+                    </td>
+
+
+
+                </tr>
+                <tr>
+                    <td>@Html.Label("Home Country")</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Country, new { @class = "form-control", @Value = Model.Country })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.Country)</span>
+                    </td>
+                    <td>@Html.Label("HostCountry")</td>
+                    <td>
+                        @*@Html.DropDownListFor(m => m.CountryId, Model.hostCountryList ?? new List<SelectListItem>(), "--------Select------------", new { @class = "form-control" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.Country)</span>*@
+                        @Html.DropDownListFor(m => m.CountryId, Model.hostCountryList ?? new List<SelectListItem>(), "--------Select------------", new { id = "ddlCountries", @class = "form-control" })
+
+                    </td>
+
+
+
+                </tr>
+                <tr>
+                    <td>@Html.Label("Home City")</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.City, new { @class = "form-control", @Value = Model.City })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.City)</span>
+                    </td>
+                    <td>@Html.Label("Host City")</td>
+                    <td>
+
+                        @Html.DropDownListFor(m => m.CityId, new List<SelectListItem>(), new { id = "ddlCities", @class = "form-control" })
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>@Html.Label("Expected Start Date")</td>
+                    <td>
+                        @*<input type="date" class="form-control"  autocomplete="off" id="startDate"  placeholder="Select Startdate"/>*@
+                        @Html.EditorFor(m => m.Exp_Start_Date, new { @class = "form-control", @id = "startDate" })
+
+                    </td>
+                    <td>@Html.Label("Expected End Date")</td>
+                    <td>
+                        @*<input type="date" class="form-control" autocomplete="off" id="endDate" placeholder="Select EndDate"/>*@
+                        @Html.EditorFor(m => m.Exp_End_Date, new { @class = "form-control", @id = "endDate",placeholder = "Enter your Start Date" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Send for Approval to")</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.ManagerId, new { @class = "form-control", @Value = Model.ManagerId })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.ManagerId)</span>
+                    </td>
+                    <td>
+                        @Html.Label("Manager Name")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.ManagerName, new { @class = "form-control", @Value = Model.ManagerName, @readonly = "readonly" })
+                    </td>
+                </tr>
+
+                @*<tr>
+                    <span class="alert-danger">@ViewBag.Message</span>
+                </tr>*@
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" style="text-align:center">
+                        <input type="submit" class="btn btn-success" />
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                </tr>
+
+
+
+
+            </table>
+        }
+    </div>
+   
+
+    @section Scripts {
+
+        @Scripts.Render("~/bundles/jqueryui")
+        @Styles.Render("~/Content/cssjqryUi")
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("input[type=datetime]").datepicker({
+                    dateFormat: "yy-m-dd",
+                    changeMonth: true,
+                    changeYear: true,
+
+
+                });
+                $("input[type=datetime]").datepicker({
+                    dateFormat: "yy-m-dd",
+                    changeMonth: true,
+                    changeYear: true,
+
+
+                });
+                $("#startDate").change(function () {
+                    startDate = $(this).datepicker("getDate");
+                    $("#endDate").datepicker("option", "minDate", startDate);
+                })
+
+
+
+            });
+        </script>
+
+    }
+
+
+
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#ddlCountries").change(function () {
+                var country = $(this).val();
+                console.log(country)
+                var txt = $("#dd_Company option:selected").text();
+                $.getJSON("/TravelBooking/Cities", { CountryId: country },
+                    function (classesData) {
+                        var select = $("#ddlCities");
+                        select.empty();
+                        select.append($('<option/>', {
+                            value: 0,
+                            text: "Select a City"
+                        }));
+                        $.each(classesData, function (index, itemData) {
+                            select.append($('<option/>', {
+                                value: itemData.Value,
+                                text: itemData.Text
+                            }));
+                        });
+                    });
+            });
+
+        });
+
+    </script>
+
+
